@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="128" viewBox="0 0 620 128" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">TokenHub</title>
+  <desc id="desc">TokenHub logo</desc>
+  <style>
+    .th-token { fill: #090D16; }
+    .th-hub { fill: #4D7C0F; }
+    .th-coral { stroke: #FF5B3B; }
+    .th-diamond { fill: #4D7C0F; }
+    @media (prefers-color-scheme: dark) {
+      .th-token { fill: #F5F3EE; }
+      .th-hub { fill: #C6F36A; }
+      .th-coral { stroke: #FF785E; }
+      .th-diamond { fill: #C6F36A; }
+    }
+  </style>
+  <g id="mark" transform="translate(8 8)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 31H40" class="th-coral" stroke-width="14"/>
+    <path d="M64 31H88" class="th-coral" stroke-width="14"/>
+    <path d="M52 43V88" class="th-coral" stroke-width="14"/>
+    <rect class="th-diamond" x="42.5" y="21.5" width="19" height="19" rx="4.5" transform="rotate(45 52 31)"/>
+  </g>
+  <text x="132" y="87" class="th-token" font-family="Inter, Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="66" font-weight="720" letter-spacing="-3.1">Token<tspan class="th-hub">Hub</tspan></text>
+</svg>

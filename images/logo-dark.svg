@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="128" viewBox="0 0 620 128" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">TokenHub</title>
+  <desc id="desc">A clean TokenHub wordmark with a geometric T-shaped gateway symbol in coral and lime.</desc>
+  <g id="mark" transform="translate(8 8)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 31H40" stroke="#FF785E" stroke-width="14"/>
+    <path d="M64 31H88" stroke="#FF785E" stroke-width="14"/>
+    <path d="M52 43V88" stroke="#FF785E" stroke-width="14"/>
+    <rect x="42.5" y="21.5" width="19" height="19" rx="4.5" transform="rotate(45 52 31)" fill="#C6F36A"/>
+  </g>
+  <text x="132" y="87" fill="#F5F3EE" font-family="Inter, Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="66" font-weight="720" letter-spacing="-3.1">Token<tspan fill="#C6F36A">Hub</tspan></text>
+</svg>

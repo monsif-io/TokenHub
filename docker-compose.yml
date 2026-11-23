@@ -1,0 +1,81 @@
+name: tokenhub
+
+services:
+  tokenhub:
+    container_name: TokenHub
+    image: tokenhub:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    command: --log-dir /app/logs
+    ports:
+      - "${TOKENHUB_PORT:-3000}:3000"
+    volumes:
+      - ./data:/data
+      - ./logs:/app/logs
+    labels:
+      dev.orbstack.domains: tokenhub.orb.local
+    environment:
+      - SQL_DSN=postgresql://tokenhub:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}@tokenhub-db:5432/tokenhub
+      - REDIS_CONN_STRING=redis://:${REDIS_PASSWORD:?Set REDIS_PASSWORD in .env}@tokenhub-redis:6379
+      - SESSION_SECRET=${SESSION_SECRET:?Set SESSION_SECRET in .env}
+      - CRYPTO_SECRET=${CRYPTO_SECRET:?Set CRYPTO_SECRET in .env}
+      - TZ=UTC
+      - ERROR_LOG_ENABLED=true
+      - BATCH_UPDATE_ENABLED=true
+      - NODE_NAME=tokenhub-node-1
+      - DEFAULT_LANGUAGE=en
+    depends_on:
+      tokenhub-db:
+        condition: service_healthy
+      tokenhub-redis:
+        condition: service_healthy
+    networks:
+      - tokenhub-network
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://localhost:3000/api/status | grep -o '\"success\":\\s*true' || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  tokenhub-redis:
+    container_name: TokenHub-redis
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--requirepass", "${REDIS_PASSWORD:?Set REDIS_PASSWORD in .env}"]
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a \"${REDIS_PASSWORD}\" ping | grep -q PONG"]
+      interval: 3s
+      timeout: 5s
+      retries: 10
+    networks:
+      - tokenhub-network
+
+  tokenhub-db:
+    container_name: TokenHub-db
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: tokenhub
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: tokenhub
+    volumes:
+      - tokenhub_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d tokenhub -U tokenhub"]
+      interval: 2s
+      timeout: 5s
+      retries: 15
+    networks:
+      - tokenhub-network
+
+volumes:
+  tokenhub_pg_data:
+    name: tokenhub_pg_data
+
+networks:
+  tokenhub-network:
+    name: tokenhub-network
+    driver: bridge

@@ -1,0 +1,18 @@
+# File path: /etc/systemd/system/tokenhub.service
+# sudo systemctl daemon-reload
+# sudo systemctl start tokenhub
+# sudo systemctl enable tokenhub
+# sudo systemctl status tokenhub
+[Unit]
+Description=One API Service
+After=network.target
+
+[Service]
+User=ubuntu  # 注意修改用户名
+WorkingDirectory=/path/to/tokenhub  # 注意修改路径
+ExecStart=/path/to/tokenhub/tokenhub --port 3000 --log-dir /path/to/tokenhub/logs  # 注意修改路径和端口号
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
