@@ -17,7 +17,6 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 For commercial licensing, please contact support@quantumnous.com
 */
 import { Link } from '@tanstack/react-router'
-import { useTranslation } from 'react-i18next'
 
 import { Skeleton } from '@/components/ui/skeleton'
 import { useSystemConfig } from '@/hooks/use-system-config'
@@ -27,47 +26,50 @@ type AuthLayoutProps = {
 }
 
 export function AuthLayout({ children }: AuthLayoutProps) {
-  const { t } = useTranslation()
-  const { systemName, logo, loading } = useSystemConfig()
+  const { systemName, loading } = useSystemConfig()
+  const brandName = (systemName || 'TokenHub').toUpperCase()
+  const currentYear = new Date().getFullYear()
 
   return (
-    <div className='relative grid h-svh max-w-none'>
+    <div className='bg-background text-foreground flex min-h-svh flex-col items-center justify-center p-6 font-sans'>
+      {/* YedAgent-style Centered Brand Header Above Card */}
       <Link
         to='/'
-        className='absolute top-4 left-4 z-10 flex items-center gap-2 transition-opacity hover:opacity-80 sm:top-8 sm:left-8'
+        className='mb-8 flex items-center gap-3 outline-none transition-transform hover:-translate-y-0.5'
       >
         {loading ? (
-          <Skeleton className='h-8 w-36 rounded-md' />
-        ) : systemName === 'TokenHub' ? (
-          <>
-            <img
-              src='/logo-dark.svg'
-              alt='TokenHub'
-              className='hidden h-8 w-auto object-contain dark:block'
-            />
-            <img
-              src='/logo-light.svg'
-              alt='TokenHub'
-              className='block h-8 w-auto object-contain dark:hidden'
-            />
-          </>
+          <Skeleton className='h-11 w-44 rounded-none' />
         ) : (
           <>
-            <div className='relative h-8 w-8'>
+            <div className='brutalist-shadow-sm flex size-11 shrink-0 items-center justify-center border-2 border-[#110e1b] bg-[#54b08c] dark:border-[#72ebbb]'>
               <img
-                src={logo}
-                alt={t('Logo')}
-                className='h-8 w-8 rounded-full object-cover'
+                src='/favicon.svg'
+                alt={brandName}
+                className='size-7 object-contain'
               />
             </div>
-            <h1 className='text-xl font-medium'>{systemName}</h1>
+            <div>
+              <h1 className='text-2xl leading-none font-extrabold tracking-wider uppercase'>
+                {brandName}
+              </h1>
+              <span className='mt-0.5 block text-xs font-bold tracking-widest text-[#54b08c] uppercase'>
+                UNIFIED AI API GATEWAY
+              </span>
+            </div>
           </>
         )}
       </Link>
-      <div className='container flex items-center pt-16 sm:pt-0'>
-        <div className='mx-auto flex w-full flex-col justify-center space-y-2 px-4 py-8 sm:w-[480px] sm:p-8'>
-          {children}
-        </div>
+
+      {/* YedAgent-style Thick 4px Bordered Card with Hard Offset Shadow */}
+      <div className='bg-card brutalist-shadow relative w-full max-w-md border-4 border-[#110e1b] p-8 dark:border-[#54b08c]'>
+        {children}
+      </div>
+
+      {/* YedAgent-style Monospace Copyright Footer */}
+      <div className='mt-8 text-center'>
+        <p className='text-muted-foreground font-mono text-[10px] font-semibold tracking-wider uppercase'>
+          {brandName} GATEWAY • © {currentYear}
+        </p>
       </div>
     </div>
   )

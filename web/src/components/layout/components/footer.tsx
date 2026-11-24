@@ -210,40 +210,33 @@ export function Footer(props: FooterProps) {
 
   return (
     <footer
-      className={cn('border-border/40 relative z-10 border-t', props.className)}
+      className={cn(
+        'relative z-10 border-t-4 border-[#54b08c] bg-[#110e1b] text-gray-300',
+        props.className
+      )}
     >
-      <div className='mx-auto max-w-6xl px-6 py-12 md:py-16'>
+      <div className='mx-auto max-w-6xl px-6 py-12 md:py-14'>
         <div className='flex flex-col justify-between gap-10 md:flex-row md:gap-16'>
           {/* Brand column */}
           <div className='shrink-0'>
-            <Link to='/' className='group flex items-center gap-2.5'>
-              {displayName === 'TokenHub' ? (
-                <>
-                  <img
-                    src='/logo-dark.svg'
-                    alt='TokenHub'
-                    className='hidden h-7 w-auto object-contain dark:block'
-                  />
-                  <img
-                    src='/logo-light.svg'
-                    alt='TokenHub'
-                    className='block h-7 w-auto object-contain dark:hidden'
-                  />
-                </>
-              ) : (
-                <>
-                  <img
-                    src={displayLogo}
-                    alt={displayName}
-                    className='size-7 rounded-lg object-contain'
-                  />
-                  <span className='text-sm font-semibold tracking-tight'>
-                    {displayName}
-                  </span>
-                </>
-              )}
+            <Link to='/' className='group flex items-center gap-3'>
+              <div className='flex size-9 shrink-0 items-center justify-center border border-white bg-[#54b08c]'>
+                <img
+                  src='/favicon.svg'
+                  alt={displayName}
+                  className='size-6 object-contain'
+                />
+              </div>
+              <div className='flex flex-col leading-none'>
+                <span className='text-base font-extrabold tracking-wider text-white uppercase'>
+                  {displayName}
+                </span>
+                <span className='mt-0.5 font-mono text-[10px] font-bold tracking-widest text-[#72ebbb] uppercase'>
+                  AI GATEWAY
+                </span>
+              </div>
             </Link>
-            <p className='text-muted-foreground/60 mt-3 max-w-[200px] text-xs leading-relaxed'>
+            <p className='mt-3 max-w-[240px] text-xs leading-relaxed text-gray-400'>
               {t('Powerful API Management Platform')}
             </p>
           </div>
@@ -253,7 +246,7 @@ export function Footer(props: FooterProps) {
             <div className='grid grid-cols-3 gap-8 md:gap-16'>
               {displayColumns.map((column, index) => (
                 <div key={index}>
-                  <p className='text-muted-foreground/50 mb-3 text-xs font-medium tracking-wider uppercase'>
+                  <p className='mb-3 font-mono text-xs font-bold tracking-wider text-[#72ebbb] uppercase'>
                     {t(column.title)}
                   </p>
                   <ul className='space-y-2.5'>
@@ -269,17 +262,17 @@ export function Footer(props: FooterProps) {
           )}
         </div>
 
-        {/* Copyright + optional legal links inline on the left, project
-            attribution on the right; wraps on narrow screens. */}
-        <div className='border-border/30 mt-12 flex flex-col items-center justify-between gap-x-3 gap-y-2 border-t pt-6 sm:flex-row'>
-          <div className='text-muted-foreground/40 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs sm:justify-start'>
+        <div className='mt-10 flex flex-col items-center justify-between gap-x-3 gap-y-2 border-t border-slate-800 pt-6 sm:flex-row'>
+          <div className='flex flex-wrap items-center justify-center gap-x-2 gap-y-1 font-mono text-[11px] text-gray-400 sm:justify-start'>
             <span>
-              &copy; {currentYear} {displayName}.{' '}
+              &copy; {currentYear} {displayName.toUpperCase()}.{' '}
               {props.copyright ?? t('footer.defaultCopyright')}
             </span>
             <LegalLinks leadingSeparator />
           </div>
-          <ProjectAttribution currentYear={currentYear} />
+          <div className='font-mono text-[11px] text-gray-500'>
+            TOKENHUB AI GATEWAY • {currentYear}
+          </div>
         </div>
       </div>
     </footer>

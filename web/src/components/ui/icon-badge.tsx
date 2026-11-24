@@ -22,29 +22,29 @@ import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 
 const iconBadgeVariants = cva(
-  'flex shrink-0 items-center justify-center [&>svg]:shrink-0',
+  'flex shrink-0 items-center justify-center rounded-none border-2 border-[#110e1b] dark:border-[#3a3454] [&>svg]:shrink-0',
   {
     variants: {
       tone: {
-        neutral: 'bg-muted text-muted-foreground',
-        primary: 'bg-primary/10 text-primary',
-        success: 'bg-success/10 text-success',
-        warning: 'bg-warning/10 text-warning',
-        info: 'bg-info/10 text-info',
-        destructive: 'bg-destructive/10 text-destructive',
-        'chart-1': 'bg-chart-1/10 text-chart-1',
-        'chart-2': 'bg-chart-2/10 text-chart-2',
-        'chart-3': 'bg-chart-3/10 text-chart-3',
-        'chart-4': 'bg-chart-4/10 text-chart-4',
-        'chart-5': 'bg-chart-5/10 text-chart-5',
+        neutral: 'bg-[#f7f4f4] text-[#110e1b] dark:bg-[#1e1b2e] dark:text-[#f7f4f4]',
+        primary: 'bg-[#72ebbb]/25 text-[#110e1b] dark:bg-[#54b08c]/20 dark:text-[#72ebbb]',
+        success: 'bg-[#54b08c]/20 text-[#110e1b] dark:text-[#72ebbb]',
+        warning: 'bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300',
+        info: 'bg-blue-100 text-blue-900 dark:bg-blue-950/60 dark:text-blue-300',
+        destructive: 'bg-red-100 text-red-800 dark:bg-red-950/60 dark:text-red-300',
+        'chart-1': 'bg-[#72ebbb]/25 text-[#110e1b] dark:bg-[#54b08c]/20 dark:text-[#72ebbb]',
+        'chart-2': 'bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300',
+        'chart-3': 'bg-purple-100 text-purple-800 dark:bg-purple-950/60 dark:text-purple-300',
+        'chart-4': 'bg-[#eadeae]/60 text-[#110e1b]',
+        'chart-5': 'bg-[#54b08c]/20 text-[#54b08c]',
       },
       size: {
-        xs: 'size-5 rounded-md [&>svg]:size-3',
-        sm: 'size-7 rounded-md [&>svg]:size-3.5',
-        md: 'size-8 rounded-lg [&>svg]:size-4',
-        title: 'size-8 rounded-lg sm:size-9 [&>svg]:size-4',
-        lg: 'size-10 rounded-xl [&>svg]:size-5',
-        stat: 'size-5 rounded-md sm:size-7 [&>svg]:size-3 sm:[&>svg]:size-3.5',
+        xs: 'size-6 rounded-none [&>svg]:size-3',
+        sm: 'size-8 rounded-none [&>svg]:size-3.5',
+        md: 'size-9 rounded-none [&>svg]:size-4',
+        title: 'size-9 rounded-none sm:size-10 [&>svg]:size-4',
+        lg: 'size-11 rounded-none [&>svg]:size-5',
+        stat: 'size-7 rounded-none sm:size-9 [&>svg]:size-3.5 sm:[&>svg]:size-4',
       },
     },
     defaultVariants: {

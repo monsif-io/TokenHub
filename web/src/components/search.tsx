@@ -38,7 +38,7 @@ export function Search({ className = '', placeholder }: SearchProps) {
     <Button
       variant='outline'
       className={cn(
-        'bg-muted/25 group text-muted-foreground hover:bg-accent relative h-8 w-full flex-1 justify-start rounded-md text-sm font-normal shadow-none sm:w-40 sm:pe-12 md:flex-none lg:w-52 xl:w-64',
+        'group text-muted-foreground relative h-9 w-full flex-1 justify-start rounded-none border-2 border-[#110e1b] bg-[#f7f4f4] text-xs font-bold shadow-[2px_2px_0px_0px_#110e1b] hover:bg-[#72ebbb]/20 hover:text-[#110e1b] sm:w-40 sm:pe-12 md:flex-none lg:w-52 dark:border-[#3a3454] dark:bg-[#110e1b]',
         className
       )}
       onClick={() => setOpen(true)}
@@ -46,11 +46,11 @@ export function Search({ className = '', placeholder }: SearchProps) {
     >
       <SearchIcon
         aria-hidden='true'
-        className='absolute start-1.5 top-1/2 -translate-y-1/2'
-        size={16}
+        className='absolute start-2 top-1/2 -translate-y-1/2'
+        size={15}
       />
       <span className='ms-4'>{resolvedPlaceholder}</span>
-      <kbd className='bg-muted group-hover:bg-accent pointer-events-none absolute end-[0.3rem] top-[0.3rem] hidden h-5 items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 select-none sm:flex'>
+      <kbd className='pointer-events-none absolute end-1.5 top-1/2 hidden h-5 -translate-y-1/2 items-center gap-0.5 border border-[#110e1b] bg-white px-1.5 font-mono text-[10px] font-bold text-[#110e1b] select-none sm:flex dark:border-[#3a3454] dark:bg-[#171424] dark:text-[#72ebbb]'>
         <span className='text-xs'>⌘</span>
         {t('K')}
       </kbd>

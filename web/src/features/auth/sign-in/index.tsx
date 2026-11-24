@@ -32,18 +32,18 @@ export function SignIn() {
 
   return (
     <AuthLayout>
-      <div className='w-full space-y-8'>
+      <div className='w-full space-y-6'>
         <div className='space-y-2'>
-          <h2 className='text-center text-2xl font-semibold tracking-tight sm:text-left'>
+          <h2 className='border-b-2 border-[#110e1b] pb-2 text-xl font-extrabold tracking-tight uppercase dark:border-[#3a3454]'>
             {t('Sign in')}
           </h2>
           {!status?.self_use_mode_enabled &&
             status?.register_enabled !== false && (
-              <p className='text-muted-foreground text-left text-sm sm:text-base'>
+              <p className='text-muted-foreground text-xs font-medium'>
                 {t("Don't have an account?")}{' '}
                 <Link
                   to='/sign-up'
-                  className='hover:text-primary font-medium underline underline-offset-4'
+                  className='font-bold text-[#54b08c] underline underline-offset-4 hover:text-[#459a7a]'
                 >
                   {t('Sign up')}
                 </Link>
@@ -57,7 +57,7 @@ export function SignIn() {
         <TermsFooter
           variant='sign-in'
           status={status}
-          className='text-center'
+          className='text-center text-xs'
         />
       </div>
     </AuthLayout>

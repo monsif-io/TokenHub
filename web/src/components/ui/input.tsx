@@ -27,7 +27,7 @@ function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
       type={type}
       data-slot='input'
       className={cn(
-        'border-input file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 disabled:bg-input/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 h-8 w-full min-w-0 rounded-lg border bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:ring-3 focus-visible:ring-inset disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:ring-3 aria-invalid:ring-inset md:text-sm',
+        'border-[#110e1b] file:text-foreground placeholder:text-muted-foreground focus-visible:border-[#54b08c] focus-visible:shadow-[2px_2px_0px_0px_#110e1b] disabled:bg-muted aria-invalid:border-destructive dark:border-[#3a3454] dark:bg-[#110e1b] dark:focus-visible:border-[#54b08c] dark:focus-visible:shadow-[2px_2px_0px_0px_#54b08c] h-9 w-full min-w-0 rounded-none border-2 bg-white px-3 py-1.5 text-base font-medium transition-all outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-bold disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm',
         className
       )}
       {...props}

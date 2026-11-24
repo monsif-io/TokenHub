@@ -16,19 +16,24 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 For commercial licensing, please contact support@quantumnous.com
 */
+import { Link } from '@tanstack/react-router'
+import { Coins } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
+
 import { ConfigDrawer } from '@/components/config-drawer'
 import { LanguageSwitcher } from '@/components/language-switcher'
 import { NotificationPopover } from '@/components/notification-popover'
 import { ProfileDropdown } from '@/components/profile-dropdown'
 import { Search } from '@/components/search'
-import { SystemUpdateAction } from '@/features/system-update/system-update-action'
 import { useNotifications } from '@/hooks/use-notifications'
 import { useTopNavLinks } from '@/hooks/use-top-nav-links'
+import { useUserDisplay } from '@/hooks/use-user-display'
+import { formatQuota } from '@/lib/format'
+import { useAuthStore } from '@/stores/auth-store'
 
 import { defaultTopNavLinks } from '../config/top-nav.config'
 import type { TopNavLink } from '../types'
 import { Header } from './header'
-import { SystemBrand } from './system-brand'
 import { TopNav } from './top-nav'
 
 /**
@@ -96,7 +101,7 @@ type AppHeaderProps = {
 
 export function AppHeader({
   navLinks = defaultTopNavLinks,
-  showTopNav = true,
+  showTopNav = false,
   leftContent,
   showSearch = true,
   rightContent,
@@ -104,32 +109,57 @@ export function AppHeader({
   showConfigDrawer = true,
   showProfileDropdown = true,
 }: AppHeaderProps) {
-  // Prioritize dynamically generated links from backend
+  const { t } = useTranslation()
   const dynamicLinks = useTopNavLinks()
   const links = dynamicLinks.length > 0 ? dynamicLinks : navLinks
-
-  // Notifications hook
   const notifications = useNotifications()
+  const user = useAuthStore((s) => s.auth.user)
+  const { roleLabel } = useUserDisplay(user)
+  const quotaDisplay = formatQuota(Number(user?.quota ?? 0))
 
   return (
     <Header>
-      <div className='@container/system-brand flex min-w-0 flex-1 items-center gap-1'>
-        <SystemBrand variant='inline' />
+      {/* Left: YedAgent-style Role Badge + Workspace Label */}
+      <div className='flex min-w-0 flex-1 items-center gap-3'>
+        <span className='brutalist-shadow-sm hidden border-2 border-[#110e1b] bg-blue-100 px-3 py-1 font-mono text-xs font-bold tracking-wider text-blue-900 uppercase sm:inline-flex dark:border-[#54b08c] dark:bg-blue-950/60 dark:text-blue-200'>
+          {roleLabel}
+        </span>
+        {user?.group ? (
+          <span className='text-muted-foreground hidden border-l border-[#110e1b]/20 pl-3 text-xs font-bold md:inline-block dark:border-slate-700'>
+            TokenHub • {String(user.group)}
+          </span>
+        ) : null}
+        {leftContent ? (
+          <div className='ms-1 flex items-center'>{leftContent}</div>
+        ) : null}
       </div>
 
-      {leftContent ? (
-        <div className='ms-2 flex items-center'>{leftContent}</div>
-      ) : null}
-
       {rightContent ?? (
-        <div className='ms-auto flex shrink-0 items-center gap-1 sm:gap-2'>
+        <div className='ms-auto flex shrink-0 items-center gap-2 sm:gap-3'>
           {showTopNav && (
-            <div className='me-1 hidden lg:block'>
+            <div className='me-1 hidden xl:block'>
               <TopNav links={links} />
             </div>
           )}
+
+          {/* YedAgent-style Quota / Token Balance Box */}
+          <Link
+            to='/wallet'
+            className='brutalist-shadow-sm hidden items-center gap-2 border-2 border-[#110e1b] bg-[#f7f4f4] px-3 py-1 transition-colors hover:bg-[#72ebbb]/20 sm:flex dark:border-[#3a3454] dark:bg-[#110e1b]'
+          >
+            <Coins className='size-4 shrink-0 text-[#54b08c]' />
+            <div className='flex flex-col leading-none'>
+              <span className='text-muted-foreground text-[9px] font-bold tracking-wider uppercase'>
+                {t('Balance')}
+              </span>
+              <span className='text-foreground font-mono text-xs font-extrabold'>
+                {quotaDisplay}
+              </span>
+            </div>
+          </Link>
+
           {showSearch && (
-            <Search className='w-8 flex-none [&>span]:hidden sm:[&>span]:inline' />
+            <Search className='w-9 flex-none [&>span]:hidden lg:w-44 lg:[&>span]:inline' />
           )}
           {showNotifications && (
             <NotificationPopover
@@ -145,7 +175,11 @@ export function AppHeader({
           )}
           <LanguageSwitcher />
           {showConfigDrawer && <ConfigDrawer />}
-          {showProfileDropdown && <ProfileDropdown />}
+          {showProfileDropdown && (
+            <div className='border-l border-[#110e1b]/20 pl-2 sm:pl-3 dark:border-slate-700'>
+              <ProfileDropdown />
+            </div>
+          )}
         </div>
       )}
     </Header>

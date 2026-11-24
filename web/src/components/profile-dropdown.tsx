@@ -60,16 +60,24 @@ export function ProfileDropdown() {
     <>
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger
-          render={<Button variant='ghost' className='relative size-6 p-0' />}
+          render={
+            <button
+              type='button'
+              className='flex items-center gap-2.5 text-left outline-none'
+            />
+          }
         >
-          <Avatar className='size-6'>
-            <AvatarFallback
-              className={`${avatarFallbackClassName} text-[11px]`}
-              style={avatarFallbackStyle}
-            >
-              {avatarFallback}
-            </AvatarFallback>
-          </Avatar>
+          <div className='flex size-9 shrink-0 items-center justify-center border-2 border-[#110e1b] bg-[#54b08c] font-mono text-xs font-extrabold text-[#110e1b] uppercase shadow-[2px_2px_0px_0px_#110e1b] transition-transform hover:-translate-x-[1px] hover:-translate-y-[1px] dark:border-[#72ebbb]'>
+            {avatarFallback}
+          </div>
+          <div className='hidden flex-col leading-tight md:flex'>
+            <span className='text-foreground max-w-[140px] truncate text-xs font-bold'>
+              {displayName}
+            </span>
+            <span className='text-muted-foreground max-w-[140px] truncate font-mono text-[10px] font-semibold'>
+              {user?.email || user?.username || roleLabel}
+            </span>
+          </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent align='end' sideOffset={8} className='w-56'>
           <div className='flex items-center gap-2 px-1.5 py-1.5'>

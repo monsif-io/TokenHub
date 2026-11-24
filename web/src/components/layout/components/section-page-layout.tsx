@@ -81,11 +81,11 @@ export function SectionPageLayout(props: SectionPageLayoutProps) {
   return (
     <PageFooterProvider container={footerContainer}>
       <Main>
-        <div className='shrink-0 px-3 pt-3 pb-2.5 sm:px-4 sm:pt-5 sm:pb-3'>
+        <div className='shrink-0 px-4 pt-5 pb-3 sm:px-6 sm:pt-6 sm:pb-4'>
           {breadcrumb != null && (
             <div className='mb-2 sm:mb-3'>{breadcrumb}</div>
           )}
-          <div className='flex flex-wrap items-center justify-between gap-x-3 gap-y-2 sm:gap-x-4'>
+          <div className='flex flex-wrap items-center justify-between gap-x-4 gap-y-3 border-b-4 border-[#110e1b] pb-4 dark:border-[#3a3454]'>
             <div
               className={
                 props.stackActionsOnMobile
@@ -93,12 +93,12 @@ export function SectionPageLayout(props: SectionPageLayoutProps) {
                   : 'min-w-0 flex-1'
               }
             >
-              <h2 className='truncate text-base font-bold tracking-tight sm:text-lg'>
+              <h2 className='truncate text-xl font-extrabold tracking-tight uppercase sm:text-2xl'>
                 {title}
               </h2>
             </div>
             {actions != null && (
-              <div className='flex max-w-full shrink-0 flex-wrap items-center justify-end gap-2 sm:gap-x-4'>
+              <div className='flex max-w-full shrink-0 flex-wrap items-center justify-end gap-2 sm:gap-x-3'>
                 {actions}
               </div>
             )}
@@ -108,8 +108,8 @@ export function SectionPageLayout(props: SectionPageLayoutProps) {
         <div
           className={
             props.fixedContent
-              ? 'min-h-0 flex-1 overflow-hidden px-3 pt-1 pb-3 sm:px-4 sm:pt-1.5 sm:pb-4'
-              : 'min-h-0 flex-1 overflow-auto px-3 pt-1 pb-3 sm:px-4 sm:pt-1.5 sm:pb-4'
+              ? 'min-h-0 flex-1 overflow-hidden px-4 pt-2 pb-4 sm:px-6 sm:pt-3 sm:pb-6'
+              : 'min-h-0 flex-1 overflow-auto px-4 pt-2 pb-4 sm:px-6 sm:pt-3 sm:pb-6'
           }
         >
           {content}
@@ -117,7 +117,7 @@ export function SectionPageLayout(props: SectionPageLayoutProps) {
 
         <div
           ref={setFooterContainer}
-          className='bg-background shrink-0 border-t px-3 py-2.5 empty:hidden sm:px-4 sm:py-3'
+          className='bg-background shrink-0 border-t-2 border-[#110e1b] px-4 py-2.5 empty:hidden sm:px-6 sm:py-3 dark:border-[#3a3454]'
         />
       </Main>
     </PageFooterProvider>

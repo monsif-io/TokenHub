@@ -273,12 +273,12 @@ export function StatCard(props: StatCardProps) {
   } else {
     valueContent = (
       <div className='flex flex-col gap-1'>
-        <div className='text-foreground font-mono text-base font-semibold tracking-tight break-all tabular-nums sm:text-2xl'>
+        <div className='text-foreground font-mono text-xl leading-none font-black tracking-tight break-all tabular-nums sm:text-2xl'>
           {props.value}
         </div>
         <p
           className={cn(
-            'text-muted-foreground/60 line-clamp-1 text-[11px] leading-relaxed sm:text-xs',
+            'text-muted-foreground line-clamp-1 text-[11px] leading-relaxed font-semibold sm:text-xs',
             props.compactMobile && 'hidden sm:block'
           )}
         >
@@ -301,26 +301,26 @@ export function StatCard(props: StatCardProps) {
     <div
       className={cn(
         'group flex flex-col justify-between sm:min-h-32 sm:gap-3',
-        props.compactMobile ? 'gap-1' : 'gap-1.5'
+        props.compactMobile ? 'gap-1' : 'gap-2'
       )}
     >
-      <div className='flex items-start justify-between gap-1'>
-        <div className='text-muted-foreground flex items-center gap-1 text-[11px] font-medium sm:gap-2 sm:text-xs'>
-          <IconBadge
-            tone={iconTone}
-            size='stat'
-            className={cn(
-              props.compactMobile &&
-                'size-4 rounded-sm [&>svg]:size-2.5 sm:size-7 sm:rounded-md sm:[&>svg]:size-3.5'
-            )}
-          >
-            <Icon />
-          </IconBadge>
-          <span className='line-clamp-1 leading-snug sm:line-clamp-2'>
+      <div className='flex items-start justify-between gap-2'>
+        <IconBadge
+          tone={iconTone}
+          size='stat'
+          className={cn(
+            props.compactMobile &&
+              'size-6 rounded-none [&>svg]:size-3 sm:size-9 sm:[&>svg]:size-4'
+          )}
+        >
+          <Icon />
+        </IconBadge>
+        <div className='flex min-w-0 flex-1 flex-col items-end text-right'>
+          <span className='text-muted-foreground line-clamp-1 font-mono text-[10px] leading-snug font-bold tracking-wider uppercase sm:line-clamp-2'>
             {props.title}
           </span>
+          {props.action && <div className='mt-1 shrink-0'>{props.action}</div>}
         </div>
-        {props.action && <div className='shrink-0'>{props.action}</div>}
       </div>
 
       {valueContent}

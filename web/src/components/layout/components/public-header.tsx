@@ -113,14 +113,14 @@ export function PublicHeader(props: PublicHeaderProps) {
   let authContent = (
     <Button
       size='sm'
-      className='h-8 rounded-lg px-3.5 text-xs font-medium'
+      className='h-9 rounded-none px-4 text-xs font-extrabold tracking-wider uppercase'
       render={<Link to='/sign-in' />}
     >
       {t('Sign in')}
     </Button>
   )
   if (isAuthenticated) authContent = <ProfileDropdown />
-  if (loading) authContent = <Skeleton className='h-8 w-20 rounded-lg' />
+  if (loading) authContent = <Skeleton className='h-9 w-24 rounded-none' />
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -199,54 +199,43 @@ export function PublicHeader(props: PublicHeaderProps) {
 
   return (
     <>
-      <header className='pointer-events-none fixed inset-x-0 top-0 z-50'>
+      <header className='fixed inset-x-0 top-0 z-50 border-b-2 border-[#110e1b] bg-white dark:border-[#3a3454] dark:bg-[#171424]'>
         <div
           className={cn(
-            'pointer-events-auto mx-auto transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]',
-            scrolled ? 'max-w-[52rem] px-3 pt-3' : 'max-w-7xl px-4 pt-0 md:px-6'
+            'mx-auto max-w-7xl px-4 transition-all duration-200 md:px-6',
+            scrolled && 'shadow-[0_4px_0_0_rgba(17,14,27,0.12)]'
           )}
         >
-          <nav
-            className={cn(
-              'flex items-center justify-between gap-2 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]',
-              scrolled
-                ? 'bg-background/60 ring-border/50 h-12 rounded-2xl pr-1.5 pl-4 shadow-[0_2px_16px_-6px_rgba(0,0,0,0.08),0_0_0_0.5px_rgba(0,0,0,0.02)] ring-[0.5px] backdrop-blur-2xl dark:shadow-[0_2px_16px_-6px_rgba(0,0,0,0.4)]'
-                : 'h-16 px-2'
-            )}
-          >
+          <nav className='flex h-16 items-center justify-between gap-2'>
             {/* Logo */}
-            <div className='@container/system-brand flex min-w-0 flex-1 items-center gap-1 lg:min-w-36'>
+            <div className='@container/system-brand flex min-w-0 flex-1 items-center gap-2 lg:min-w-44'>
               <Link
                 to={homeUrl}
-                className='group flex min-w-0 items-center transition-all duration-300 group-hover:scale-[1.02]'
+                className='group flex min-w-0 items-center gap-2.5 outline-none'
                 aria-label={displaySiteName}
               >
                 {loading ? (
-                  <Skeleton className='h-8 w-36 rounded-md' />
-                ) : displaySiteName === 'TokenHub' ? (
-                  <>
-                    <img
-                      src='/logo-dark.svg'
-                      alt='TokenHub'
-                      className='hidden h-8 w-auto object-contain dark:block'
-                    />
-                    <img
-                      src='/logo-light.svg'
-                      alt='TokenHub'
-                      className='block h-8 w-auto object-contain dark:hidden'
-                    />
-                  </>
+                  <Skeleton className='h-9 w-36 rounded-none' />
                 ) : (
                   <div className='flex items-center gap-2.5'>
-                    <div className='flex size-7 shrink-0 items-center justify-center transition-all duration-300 group-hover:scale-105'>
-                      {logoContent}
+                    <div className='brutalist-shadow-sm flex size-9 shrink-0 items-center justify-center border-2 border-[#110e1b] bg-[#54b08c] transition-transform group-hover:-translate-x-[1px] group-hover:-translate-y-[1px]'>
+                      <img
+                        src='/favicon.svg'
+                        alt={displaySiteName}
+                        className='size-6 object-contain'
+                      />
                     </div>
-                    <span
-                      className='max-w-48 truncate text-base font-bold tracking-tight'
-                      title={displaySiteName}
-                    >
-                      {displaySiteName}
-                    </span>
+                    <div className='flex flex-col leading-none'>
+                      <span
+                        className='text-foreground max-w-48 truncate text-base font-extrabold tracking-wider uppercase'
+                        title={displaySiteName}
+                      >
+                        {displaySiteName}
+                      </span>
+                      <span className='font-mono text-[9px] font-bold tracking-widest text-[#54b08c] uppercase'>
+                        AI GATEWAY
+                      </span>
+                    </div>
                   </div>
                 )}
               </Link>

@@ -42,12 +42,12 @@ export function Hero(props: HeroProps) {
       return (
         <Button
           variant='outline'
-          className='group border-border/50 hover:border-border hover:bg-muted/50 inline-flex h-11 items-center gap-1.5 rounded-lg px-5 text-sm font-medium'
+          className='group inline-flex h-11 items-center gap-2 rounded-none px-5 text-xs font-extrabold tracking-wider uppercase'
           render={
             <a href={docsUrl} target='_blank' rel='noopener noreferrer' />
           }
         >
-          <BookOpen className='text-muted-foreground/80 group-hover:text-foreground size-4 transition-colors duration-200' />
+          <BookOpen className='size-4' />
           <span>{t('Docs')}</span>
         </Button>
       )
@@ -55,62 +55,50 @@ export function Hero(props: HeroProps) {
     return (
       <Button
         variant='outline'
-        className='group border-border/50 hover:border-border hover:bg-muted/50 inline-flex h-11 items-center gap-1.5 rounded-lg px-5 text-sm font-medium'
+        className='group inline-flex h-11 items-center gap-2 rounded-none px-5 text-xs font-extrabold tracking-wider uppercase'
         render={<Link to={docsUrl} />}
       >
-        <BookOpen className='text-muted-foreground/80 group-hover:text-foreground size-4 transition-colors duration-200' />
+        <BookOpen className='size-4' />
         <span>{t('Docs')}</span>
       </Button>
     )
   }
 
   return (
-    <section className='relative z-10 overflow-hidden px-6 pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-36 lg:pb-28'>
-      {/* Radial gradient background */}
+    <section className='bg-background relative z-10 overflow-hidden border-b-4 border-[#110e1b] px-6 pt-28 pb-16 md:pt-36 md:pb-24 lg:pt-40 lg:pb-28 dark:border-[#3a3454]'>
+      {/* Subtle architectural grid matching Neo-Brutalist blueprint aesthetic */}
       <div
         aria-hidden
-        className='pointer-events-none absolute inset-0 -z-10 opacity-25 dark:opacity-[0.12]'
-        style={{
-          background: [
-            'radial-gradient(ellipse 60% 50% at 20% 20%, oklch(0.72 0.18 250 / 80%) 0%, transparent 70%)',
-            'radial-gradient(ellipse 50% 40% at 80% 15%, oklch(0.65 0.15 200 / 60%) 0%, transparent 70%)',
-            'radial-gradient(ellipse 40% 35% at 40% 80%, oklch(0.70 0.12 280 / 40%) 0%, transparent 70%)',
-          ].join(', '),
-        }}
-      />
-      {/* Grid pattern */}
-      <div
-        aria-hidden
-        className='absolute inset-0 -z-10 bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_30%,black_20%,transparent_100%)] bg-[size:4rem_4rem] opacity-[0.08]'
+        className='pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_right,#110e1b12_1px,transparent_1px),linear-gradient(to_bottom,#110e1b12_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] dark:bg-[linear-gradient(to_right,#54b08c14_1px,transparent_1px),linear-gradient(to_bottom,#54b08c14_1px,transparent_1px)]'
       />
 
-      <div className='mx-auto grid max-w-6xl grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-8'>
-        {/* Left Column: Title, description, action buttons and application support */}
+      <div className='mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-10'>
+        {/* Left Column: Title, description, action buttons */}
         <div className='flex flex-col items-start text-left lg:col-span-6'>
-          {/* Top Pill Badge */}
+          {/* YedAgent-style Brutalist Pill Badge */}
           <div
-            className='landing-animate-fade-up mb-5 inline-flex items-center gap-1.5 rounded-full border border-blue-500/20 bg-blue-500/5 px-3 py-1.5 text-[11px] font-medium text-blue-600 opacity-0 shadow-xs dark:border-blue-400/20 dark:bg-blue-400/5 dark:text-blue-400'
+            className='landing-animate-fade-up brutalist-shadow-sm mb-6 inline-flex items-center gap-2 border-2 border-[#110e1b] bg-[#72ebbb]/30 px-3 py-1.5 font-mono text-[11px] font-bold tracking-wider text-[#110e1b] uppercase opacity-0 dark:border-[#54b08c] dark:bg-[#54b08c]/20 dark:text-[#72ebbb]'
             style={{ animationDelay: '0ms' }}
           >
-            <span className='relative flex size-1.5'>
-              <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75' />
-              <span className='relative inline-flex size-1.5 rounded-full bg-blue-500 dark:bg-blue-400' />
+            <span className='relative flex size-2'>
+              <span className='absolute inline-flex h-full w-full animate-ping bg-[#54b08c] opacity-75' />
+              <span className='relative inline-flex size-2 bg-[#54b08c]' />
             </span>
             <span>{t('AI Application Infrastructure Foundation')}</span>
           </div>
 
           <h1
-            className='landing-animate-fade-up text-[clamp(2.25rem,4.5vw,3.25rem)] leading-[1.15] font-bold tracking-tight'
+            className='landing-animate-fade-up text-[clamp(2.2rem,4.5vw,3.35rem)] leading-[1.08] font-black tracking-tight uppercase'
             style={{ animationDelay: '60ms' }}
           >
             {t('Unified API Gateway for')}
             <br />
-            <span className='bg-gradient-to-r from-blue-400 via-violet-400 to-purple-500 bg-clip-text text-transparent'>
+            <span className='mt-2 inline-block border-2 border-[#110e1b] bg-[#54b08c] px-3 py-1 text-[#110e1b] shadow-[4px_4px_0px_0px_#110e1b] dark:border-[#72ebbb]'>
               {t('Vast Range of AI Models')}
             </span>
           </h1>
           <p
-            className='landing-animate-fade-up text-muted-foreground/80 mt-5 max-w-xl text-base leading-relaxed opacity-0 md:text-[15px]'
+            className='landing-animate-fade-up text-muted-foreground mt-6 max-w-xl text-sm leading-relaxed font-medium opacity-0 md:text-base'
             style={{ animationDelay: '120ms' }}
           >
             {t(
@@ -125,26 +113,26 @@ export function Hero(props: HeroProps) {
             {props.isAuthenticated ? (
               <>
                 <Button
-                  className='group h-11 rounded-lg px-5 text-sm font-medium'
+                  className='group h-11 rounded-none px-6 text-xs font-extrabold tracking-wider uppercase'
                   render={<Link to='/dashboard' />}
                 >
                   {t('Go to Dashboard')}
-                  <ArrowRight className='ml-1.5 size-4 transition-transform duration-200 group-hover:translate-x-0.5' />
+                  <ArrowRight className='ml-1.5 size-4 transition-transform duration-150 group-hover:translate-x-1' />
                 </Button>
                 {renderDocsButton()}
               </>
             ) : (
               <>
                 <Button
-                  className='group h-11 rounded-lg px-5 text-sm font-medium'
+                  className='group h-11 rounded-none px-6 text-xs font-extrabold tracking-wider uppercase'
                   render={<Link to='/sign-up' />}
                 >
                   {t('Get Started')}
-                  <ArrowRight className='ml-1.5 size-4 transition-transform duration-200 group-hover:translate-x-0.5' />
+                  <ArrowRight className='ml-1.5 size-4 transition-transform duration-150 group-hover:translate-x-1' />
                 </Button>
                 <Button
                   variant='outline'
-                  className='border-border/50 hover:border-border hover:bg-muted/50 h-11 rounded-lg px-5 text-sm font-medium'
+                  className='h-11 rounded-none px-5 text-xs font-extrabold tracking-wider uppercase'
                   render={<Link to='/pricing' />}
                 >
                   {t('View Pricing')}
@@ -158,9 +146,11 @@ export function Hero(props: HeroProps) {
         {/* Right Column: Hero Terminal API Demo */}
         <div
           className='landing-animate-fade-up flex w-full justify-center opacity-0 lg:col-span-6'
-          style={{ animationDelay: '320ms' }}
+          style={{ animationDelay: '260ms' }}
         >
-          <HeroTerminalDemo className='mt-8 lg:mt-0' />
+          <div className='w-full border-4 border-[#110e1b] shadow-[6px_6px_0px_0px_#54b08c] dark:border-[#54b08c]'>
+            <HeroTerminalDemo className='mt-0' />
+          </div>
         </div>
       </div>
     </section>

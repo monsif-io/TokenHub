@@ -180,35 +180,35 @@ export function Features(_props: FeaturesProps) {
   ]
 
   return (
-    <section className='relative z-10 px-6 py-24 md:py-32'>
+    <section className='bg-background relative z-10 px-6 py-20 md:py-28'>
       <div className='mx-auto max-w-6xl'>
-        <AnimateInView className='mb-16 max-w-lg'>
-          <p className='text-muted-foreground mb-3 text-xs font-medium tracking-widest uppercase'>
+        <AnimateInView className='mb-12 border-b-4 border-[#110e1b] pb-5 dark:border-[#3a3454]'>
+          <p className='mb-2 font-mono text-xs font-bold tracking-widest text-[#54b08c] uppercase'>
             {t('Core Features')}
           </p>
-          <h2 className='text-2xl leading-tight font-bold tracking-tight md:text-3xl'>
-            {t('Built for developers,')}
-            <br />
-            {t('designed for scale')}
+          <h2 className='text-2xl leading-tight font-black tracking-tight uppercase md:text-4xl'>
+            {t('Built for developers,')} {t('designed for scale')}
           </h2>
         </AnimateInView>
 
-        {/* Bento grid */}
-        <div className='border-border/40 bg-border/40 grid gap-px overflow-hidden rounded-xl border md:grid-cols-3'>
+        {/* Brutalist Bento grid */}
+        <div className='grid gap-6 md:grid-cols-3'>
           {features.map((f, i) => (
             <AnimateInView
               key={f.id}
-              delay={i * 100}
+              delay={i * 80}
               animation='scale-in'
-              className={`bg-background group hover:bg-muted/20 p-7 transition-colors duration-300 md:p-8 ${f.span}`}
+              className={`bg-card brutalist-shadow brutalist-shadow-hover group border-2 border-[#110e1b] p-6 md:p-7 dark:border-[#3a3454] ${f.span}`}
             >
               <div className='mb-3 flex items-center gap-3'>
-                <span className='border-border/40 bg-muted text-muted-foreground flex size-7 items-center justify-center rounded-md border text-[10px] font-semibold tabular-nums'>
+                <span className='flex size-8 items-center justify-center border-2 border-[#110e1b] bg-[#54b08c] font-mono text-xs font-black text-[#110e1b] tabular-nums'>
                   {f.num}
                 </span>
-                <h3 className='text-sm font-semibold'>{f.title}</h3>
+                <h3 className='text-sm font-extrabold tracking-wider uppercase'>
+                  {f.title}
+                </h3>
               </div>
-              <p className='text-muted-foreground text-sm leading-relaxed'>
+              <p className='text-muted-foreground text-sm leading-relaxed font-medium'>
                 {f.desc}
               </p>
               {f.visual}
@@ -217,19 +217,21 @@ export function Features(_props: FeaturesProps) {
         </div>
 
         {/* Additional features row */}
-        <div className='mt-12 grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12'>
+        <div className='mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4'>
           {additionalFeatures.map((f, i) => (
             <AnimateInView
               key={f.title}
-              delay={i * 100}
+              delay={i * 80}
               animation='fade-up'
-              className='flex flex-col items-center text-center'
+              className='bg-card brutalist-shadow-sm flex flex-col items-start border-2 border-[#110e1b] p-5 text-left dark:border-[#3a3454]'
             >
-              <div className='text-muted-foreground border-border/50 bg-muted/30 group-hover:text-foreground mb-3 flex size-12 items-center justify-center rounded-xl border transition-colors'>
+              <div className='mb-3 flex size-10 items-center justify-center border-2 border-[#110e1b] bg-[#72ebbb]/25 text-[#110e1b] dark:border-[#54b08c] dark:text-[#72ebbb]'>
                 {f.icon}
               </div>
-              <h3 className='mb-1.5 text-sm font-semibold'>{f.title}</h3>
-              <p className='text-muted-foreground max-w-[200px] text-xs leading-relaxed'>
+              <h3 className='mb-1.5 text-xs font-extrabold tracking-wider uppercase'>
+                {f.title}
+              </h3>
+              <p className='text-muted-foreground text-xs leading-relaxed font-medium'>
                 {f.desc}
               </p>
             </AnimateInView>
